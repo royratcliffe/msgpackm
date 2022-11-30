@@ -1,0 +1,8 @@
+create_test_sourcelist(tests msgpackm-test.c swap16.c)
+add_executable(msgpackm-test ${tests})
+target_link_libraries(msgpackm-test msgpackm)
+# remove(tests msgpackm-test.c)
+foreach(test ${tests})
+    get_filename_component(testname ${test} NAME_WE)
+    add_test(NAME ${testname} COMMAND msgpackm-test ${testname})
+endforeach()
