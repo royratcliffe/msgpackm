@@ -19,4 +19,4 @@ jobs:
         run: cmake --build ${{github.workspace}}/build --config Debug --target all -j 10
       - name: CTest
         working-directory: ${{github.workspace}}/build
-        run: ctest
+        run: ctest -C Debug --output-on-failure -j 10 -T test
