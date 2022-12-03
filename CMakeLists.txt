@@ -8,7 +8,8 @@ add_subdirectory(tests)
 
 # https://www.mcternan.me.uk/mscgen/
 find_package(Doxygen OPTIONAL_COMPONENTS dot mscgen dia)
-
-set(OPTIMIZE_OUTPUT_FOR_C YES)
-set(DOXYGEN_SOURCE_BROWSER YES)
-doxygen_add_docs(doxy ${PROJECT_SOURCE_DIR}/inc ${PROJECT_SOURCE_DIR}/src)
+if(DOXYGEN_FOUND)
+    set(OPTIMIZE_OUTPUT_FOR_C YES)
+    set(DOXYGEN_SOURCE_BROWSER YES)
+    doxygen_add_docs(doxy ${PROJECT_SOURCE_DIR}/inc ${PROJECT_SOURCE_DIR}/src)
+endif()
