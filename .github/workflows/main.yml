@@ -11,13 +11,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout 🛎️
         uses: actions/checkout@v3
       - name: Install
         run: sudo apt-get install ninja-build doxygen graphviz mscgen dia
-      - name: Configure
+      - name: Configure 🔧
         run: cmake -G Ninja -B ${{runner.temp}}
-      - name: Build, test and document
+      - name: Build and Test 🚀
         working-directory: ${{runner.temp}}
         run: |
           ninja

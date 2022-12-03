@@ -20,11 +20,11 @@ jobs:
         run: sudo apt-get install ninja-build doxygen graphviz mscgen dia
       - name: Configure
         run: cmake -G Ninja -B ${{runner.temp}}
-      - name: Build, test and document
+      - name: Doxygen
         working-directory: ${{runner.temp}}
         run: ninja doxy
       # https://github.com/JamesIves/github-pages-deploy-action
-      - name: Deploy pages
+      - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: ${{runner.temp}}/html
