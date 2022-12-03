@@ -22,7 +22,9 @@ jobs:
         run: cmake -G Ninja -B ${{runner.temp}}
       - name: Doxygen
         working-directory: ${{runner.temp}}
-        run: ninja doxy
+        run: |
+          ninja doxy
+          touch html/.nojekyll
       # https://github.com/JamesIves/github-pages-deploy-action
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
