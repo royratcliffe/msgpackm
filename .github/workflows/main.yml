@@ -13,13 +13,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: APT install
+      - name: Install
         run: sudo apt-get install ninja-build doxygen graphviz mscgen dia
-      - name: CMake
-        run: cmake -B ${{runner.temp}} -G Ninja
-      - name: Ninja
+      - name: Configure
+        run: cmake -G Ninja -B ${{runner.temp}}
+      - name: Build and test
         working-directory: ${{runner.temp}}
-        run: ninja
-      - name: CTest
-        working-directory: ${{runner.temp}}
-        run: ctest
+        run: ninja all test
