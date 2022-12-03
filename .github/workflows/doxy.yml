@@ -22,8 +22,7 @@ jobs:
         run: cmake -G Ninja -B ${{runner.temp}}
       - name: Build, test and document
         working-directory: ${{runner.temp}}
-        run: |
-          ninja doxy
+        run: ninja doxy
       # https://github.com/JamesIves/github-pages-deploy-action
       - name: Deploy pages
         uses: JamesIves/github-pages-deploy-action@v4
