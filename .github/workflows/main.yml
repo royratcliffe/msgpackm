@@ -17,6 +17,9 @@ jobs:
         run: sudo apt-get install ninja-build doxygen graphviz mscgen dia
       - name: Configure
         run: cmake -G Ninja -B ${{runner.temp}}
-      - name: Build and test
+      - name: Build, test and document
         working-directory: ${{runner.temp}}
-        run: ninja all test
+        run: |
+          ninja
+          ninja test
+          ninja doxy
