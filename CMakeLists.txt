@@ -7,7 +7,7 @@ add_subdirectory(src)
 add_subdirectory(tests)
 
 # https://www.mcternan.me.uk/mscgen/
-find_package(Doxygen REQUIRED dot OPTIONAL_COMPONENTS mscgen dia)
+find_package(Doxygen OPTIONAL_COMPONENTS dot mscgen dia)
 
 set(OPTIMIZE_OUTPUT_FOR_C YES)
 set(DOXYGEN_SOURCE_BROWSER YES)
