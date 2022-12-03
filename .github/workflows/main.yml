@@ -17,7 +17,7 @@ jobs:
         id: set-up-homebrew
         uses: Homebrew/actions/setup-homebrew@master
       - name: Install Doxygen
-        run: brew install doxygen
+        run: brew install doxygen graphviz
       - name: CMake
         run: cmake -B ${{github.workspace}}/build
       - name: CTest
