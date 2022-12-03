@@ -7,7 +7,12 @@ on:
     branches: [main]
 
 jobs:
-  cmake:
+  build:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+    - name: CMake
+      run: cmake -B ${{github.workspace}}/build
+    - name: CTest
+      working-directory: ${{github.workspace}}/build
+      run: ctest
