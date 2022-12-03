@@ -22,4 +22,3 @@ jobs:
         run: |
           ninja
           ninja test
-          ninja doxy
