@@ -16,7 +16,7 @@ jobs:
       - name: Install Doxygen
         run: sudo apt-get install doxygen graphviz mscgen dia
       - name: CMake
-        run: cmake --build ${{runner.temp}} --config Debug --target all -j 10
+        run: cmake -B ${{runner.temp}}
       - name: CTest
         working-directory: ${{runner.temp}}
         run: ctest -C Debug --output-on-failure -j 10 -T test
