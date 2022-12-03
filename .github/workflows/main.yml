@@ -13,8 +13,8 @@ jobs:
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v3
-      - name: Install
-        run: sudo apt-get install ninja-build doxygen graphviz mscgen dia
+      - name: Install 📣
+        run: sudo apt-get install ninja-build
       - name: Configure 🔧
         run: cmake -G Ninja -B ${{runner.temp}}
       - name: Build and Test 🚀
