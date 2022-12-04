@@ -5,6 +5,10 @@ int msgpack_format_int(struct msgpack_formatter *formatter, int value)
     if (-32 <= value && value <= 127)
     {
         if (formatter->size < 1) return 0;
+        /*
+         * The following expression demotes the incoming integer from signed to
+         * unsigned throwing away all more-significant bits beyond the eight.
+         */
         *formatter->data++ = value;
         formatter->size--;
         return 1;
