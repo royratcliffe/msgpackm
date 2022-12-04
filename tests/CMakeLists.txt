@@ -1,4 +1,4 @@
-create_test_sourcelist(tests msgpackm-test.c swap16.c)
+create_test_sourcelist(tests msgpackm-test.c swap16.c format-fixint.c)
 add_executable(msgpackm-test ${tests})
 target_link_libraries(msgpackm-test msgpackm)
 remove(tests msgpackm-test.c)
