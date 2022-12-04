@@ -106,8 +106,8 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a6748f9d8a152917f14233234f8553425"><td class="memItemLeft" align="right" valign="top"><a id="a6748f9d8a152917f14233234f8553425"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>msgpack_format_int</b> (struct <a class="el" href="structmsgpack__formatter.html">msgpack_formatter</a> *formatter, int value)</td></tr>
+<tr class="memitem:a6748f9d8a152917f14233234f8553425"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="msgpackm_8h.html#a6748f9d8a152917f14233234f8553425">msgpack_format_int</a> (struct <a class="el" href="structmsgpack__formatter.html">msgpack_formatter</a> *formatter, int value)</td></tr>
+<tr class="memdesc:a6748f9d8a152917f14233234f8553425"><td class="mdescLeft">&#160;</td><td class="mdescRight">Formats an integer.  <a href="msgpackm_8h.html#a6748f9d8a152917f14233234f8553425">More...</a><br /></td></tr>
 <tr class="separator:a6748f9d8a152917f14233234f8553425"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af42ae4afbf01f8eb7ce0dab15d7c4599"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="msgpackm_8h.html#af42ae4afbf01f8eb7ce0dab15d7c4599">msgpack_swap16</a> (const uint8_t *restrict swapping, uint8_t *restrict swapped)</td></tr>
 <tr class="memdesc:af42ae4afbf01f8eb7ce0dab15d7c4599"><td class="mdescLeft">&#160;</td><td class="mdescRight">Swaps two octets.  <a href="msgpackm_8h.html#af42ae4afbf01f8eb7ce0dab15d7c4599">More...</a><br /></td></tr>
@@ -118,6 +118,48 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>msgpack_format_int</b>
 
 <p class="definition">Definition in file <a class="el" href="msgpackm_8h_source.html">msgpackm.h</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="a6748f9d8a152917f14233234f8553425"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6748f9d8a152917f14233234f8553425">&#9670;&nbsp;</a></span>msgpack_format_int()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int msgpack_format_int </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structmsgpack__formatter.html">msgpack_formatter</a> *&#160;</td>
+          <td class="paramname"><em>formatter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Formats an integer. </p>
+<p>Encoded integers have five <em>full</em> forms: one through five octets plus nine octets when supporting 64-bit forms.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">values   </th><th class="markdownTableHeadNone">type    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">00 through 7F   </td><td class="markdownTableBodyNone">fixed integer (fixint) positive    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">E0 through FF   </td><td class="markdownTableBodyNone">fixed integer (fixint) negative   </td></tr>
+</table>
+<p>Note that <code>int</code> can be any bit-width ranging from 8 through 64, or even possibly more, depending on architecture. </p>
+
+<p class="definition">Definition at line <a class="el" href="msgpackm_8c_source.html#l00003">3</a> of file <a class="el" href="msgpackm_8c_source.html">msgpackm.c</a>.</p>
+
+</div>
+</div>
 <a id="af42ae4afbf01f8eb7ce0dab15d7c4599"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af42ae4afbf01f8eb7ce0dab15d7c4599">&#9670;&nbsp;</a></span>msgpack_swap16()</h2>
 
@@ -147,7 +189,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>msgpack_format_int</b>
 <p>Swaps two octets. </p>
 <p>Performs a bit swap operation with indirection. </p>
 
-<p class="definition">Definition at line <a class="el" href="msgpackm_8c_source.html#l00003">3</a> of file <a class="el" href="msgpackm_8c_source.html">msgpackm.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="msgpackm_8c_source.html#l00015">15</a> of file <a class="el" href="msgpackm_8c_source.html">msgpackm.c</a>.</p>
 
 </div>
 </div>
