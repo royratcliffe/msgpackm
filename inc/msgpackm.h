@@ -2,6 +2,7 @@
  * \file
  * \brief MessagePack for Microcontrollers.
 */
+#include <stddef.h>
 #include <stdint.h>
 
 struct msgpack_formatter
