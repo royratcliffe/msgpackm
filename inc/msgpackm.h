@@ -1,3 +1,7 @@
+/**
+ * \file
+ * \brief MessagePack for Microcontrollers.
+*/
 #include <stdint.h>
 
 /*!
