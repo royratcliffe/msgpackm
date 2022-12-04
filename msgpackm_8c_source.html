@@ -70,36 +70,47 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="msgpackm_8h.html">msgpackm.h</a>&gt;</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">static</span> <span class="keywordtype">int</span> msgpack_format(<span class="keyword">struct</span> <a class="code" href="structmsgpack__formatter.html">msgpack_formatter</a> *formatter, uint8_t xx)</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;{</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    <span class="keywordflow">if</span> (formatter-&gt;size &lt; 1) <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    *formatter-&gt;data++ = xx;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    formatter-&gt;size--;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;}</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="msgpackm_8h.html#a6748f9d8a152917f14233234f8553425">   11</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="msgpackm_8h.html#a6748f9d8a152917f14233234f8553425">msgpack_format_int</a>(<span class="keyword">struct</span> <a class="code" href="structmsgpack__formatter.html">msgpack_formatter</a> *formatter, <span class="keywordtype">int</span> value)</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keywordflow">if</span> (-32 &lt;= value &amp;&amp; value &lt;= 127)</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    {</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <span class="comment">/*</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">         * The following expression demotes the incoming integer from signed to</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">         * unsigned throwing away all more-significant bits beyond the eight.</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">         */</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="keywordflow">return</span> msgpack_format(formatter, value);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    }</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;}</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="msgpackm_8h.html#af42ae4afbf01f8eb7ce0dab15d7c4599">   24</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="msgpackm_8h.html#af42ae4afbf01f8eb7ce0dab15d7c4599">msgpack_swap16</a>(<span class="keyword">const</span> uint8_t *restrict swapping, uint8_t *restrict swapped)</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;{</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    swapped[0] = swapping[1];</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    swapped[1] = swapping[0];</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;}</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;stdarg.h&gt;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">int</span> format(<span class="keyword">struct</span> <a class="code" href="structmsgpack__formatter.html">msgpack_formatter</a> *formatter, <span class="keywordtype">size_t</span> size, ...)</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordflow">if</span> (formatter-&gt;size &lt; size) <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    va_list args;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    va_start(args, size);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordflow">while</span> (size--)</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        *formatter-&gt;data++ = va_arg(args, <span class="keywordtype">int</span>);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        formatter-&gt;size--;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    }</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    va_end(args);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;}</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="msgpackm_8h.html#a6748f9d8a152917f14233234f8553425">   31</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="msgpackm_8h.html#a6748f9d8a152917f14233234f8553425">msgpack_format_int</a>(<span class="keyword">struct</span> <a class="code" href="structmsgpack__formatter.html">msgpack_formatter</a> *formatter, <span class="keywordtype">int</span> value)</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;{</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordflow">if</span> (-32 &lt;= value &amp;&amp; value &lt;= 127)</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    {</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="comment">/*</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">         * The following expression demotes the incoming integer from signed to</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">         * unsigned throwing away all more-significant bits beyond the eight.</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">         */</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keywordflow">return</span> format(formatter, 1, value);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    }</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordflow">if</span> (-128 &lt;= value &amp;&amp; value &lt;= 127)</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    {</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordflow">return</span> format(formatter, 2, 0xcc, value);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    }</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;}</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="msgpackm_8h.html#af42ae4afbf01f8eb7ce0dab15d7c4599">   48</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="msgpackm_8h.html#af42ae4afbf01f8eb7ce0dab15d7c4599">msgpack_swap16</a>(<span class="keyword">const</span> uint8_t *restrict swapping, uint8_t *restrict swapped)</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;{</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    swapped[0] = swapping[1];</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    swapped[1] = swapping[0];</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;}</div>
 <div class="ttc" id="amsgpackm_8h_html"><div class="ttname"><a href="msgpackm_8h.html">msgpackm.h</a></div><div class="ttdoc">MessagePack for Microcontrollers.</div></div>
-<div class="ttc" id="amsgpackm_8h_html_a6748f9d8a152917f14233234f8553425"><div class="ttname"><a href="msgpackm_8h.html#a6748f9d8a152917f14233234f8553425">msgpack_format_int</a></div><div class="ttdeci">int msgpack_format_int(struct msgpack_formatter *formatter, int value)</div><div class="ttdoc">Formats an integer.</div><div class="ttdef"><b>Definition:</b> <a href="msgpackm_8c_source.html#l00011">msgpackm.c:11</a></div></div>
-<div class="ttc" id="amsgpackm_8h_html_af42ae4afbf01f8eb7ce0dab15d7c4599"><div class="ttname"><a href="msgpackm_8h.html#af42ae4afbf01f8eb7ce0dab15d7c4599">msgpack_swap16</a></div><div class="ttdeci">void msgpack_swap16(const uint8_t *restrict swapping, uint8_t *restrict swapped)</div><div class="ttdoc">Swaps two octets.</div><div class="ttdef"><b>Definition:</b> <a href="msgpackm_8c_source.html#l00024">msgpackm.c:24</a></div></div>
+<div class="ttc" id="amsgpackm_8h_html_a6748f9d8a152917f14233234f8553425"><div class="ttname"><a href="msgpackm_8h.html#a6748f9d8a152917f14233234f8553425">msgpack_format_int</a></div><div class="ttdeci">int msgpack_format_int(struct msgpack_formatter *formatter, int value)</div><div class="ttdoc">Formats an integer.</div><div class="ttdef"><b>Definition:</b> <a href="msgpackm_8c_source.html#l00031">msgpackm.c:31</a></div></div>
+<div class="ttc" id="amsgpackm_8h_html_af42ae4afbf01f8eb7ce0dab15d7c4599"><div class="ttname"><a href="msgpackm_8h.html#af42ae4afbf01f8eb7ce0dab15d7c4599">msgpack_swap16</a></div><div class="ttdeci">void msgpack_swap16(const uint8_t *restrict swapping, uint8_t *restrict swapped)</div><div class="ttdoc">Swaps two octets.</div><div class="ttdef"><b>Definition:</b> <a href="msgpackm_8c_source.html#l00048">msgpackm.c:48</a></div></div>
 <div class="ttc" id="astructmsgpack__formatter_html"><div class="ttname"><a href="structmsgpack__formatter.html">msgpack_formatter</a></div><div class="ttdef"><b>Definition:</b> <a href="msgpackm_8h_source.html#l00008">msgpackm.h:9</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
