@@ -1,7 +1,6 @@
-#include <msgpackm.h>
 #include "msgpackm-test.h"
 
-int swap16(int argc, char *argv[])
+int swap16()
 {
     uint8_t incoming[] = {0x11, 0x22}, outgoing[2];
     msgpack_swap16(incoming, outgoing);
