@@ -70,19 +70,20 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <a href="msgpackm_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
-<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="structmsgpack__formatter.html">    7</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structmsgpack__formatter.html">msgpack_formatter</a></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    uint8_t *data;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keywordtype">size_t</span> size;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;};</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keywordtype">int</span> msgpack_format_int(<span class="keyword">struct</span> <a class="code" href="structmsgpack__formatter.html">msgpack_formatter</a> *formatter, <span class="keywordtype">int</span> value);</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keywordtype">void</span> <a class="code" href="msgpackm_8h.html#af42ae4afbf01f8eb7ce0dab15d7c4599">msgpack_swap16</a>(<span class="keyword">const</span> uint8_t *restrict swapping, uint8_t *restrict swapped);</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="structmsgpack__formatter.html">    8</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structmsgpack__formatter.html">msgpack_formatter</a></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    uint8_t *data;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordtype">size_t</span> size;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;};</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keywordtype">int</span> msgpack_format_int(<span class="keyword">struct</span> <a class="code" href="structmsgpack__formatter.html">msgpack_formatter</a> *formatter, <span class="keywordtype">int</span> value);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keywordtype">void</span> <a class="code" href="msgpackm_8h.html#af42ae4afbf01f8eb7ce0dab15d7c4599">msgpack_swap16</a>(<span class="keyword">const</span> uint8_t *restrict swapping, uint8_t *restrict swapped);</div>
 <div class="ttc" id="amsgpackm_8h_html_af42ae4afbf01f8eb7ce0dab15d7c4599"><div class="ttname"><a href="msgpackm_8h.html#af42ae4afbf01f8eb7ce0dab15d7c4599">msgpack_swap16</a></div><div class="ttdeci">void msgpack_swap16(const uint8_t *restrict swapping, uint8_t *restrict swapped)</div><div class="ttdoc">Swaps two octets.</div><div class="ttdef"><b>Definition:</b> <a href="msgpackm_8c_source.html#l00003">msgpackm.c:3</a></div></div>
-<div class="ttc" id="astructmsgpack__formatter_html"><div class="ttname"><a href="structmsgpack__formatter.html">msgpack_formatter</a></div><div class="ttdef"><b>Definition:</b> <a href="msgpackm_8h_source.html#l00007">msgpackm.h:8</a></div></div>
+<div class="ttc" id="astructmsgpack__formatter_html"><div class="ttname"><a href="structmsgpack__formatter.html">msgpack_formatter</a></div><div class="ttdef"><b>Definition:</b> <a href="msgpackm_8h_source.html#l00008">msgpackm.h:9</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
